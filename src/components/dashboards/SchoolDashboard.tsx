@@ -223,7 +223,7 @@ export function SchoolDashboard() {
                 </div>
                 <div className="text-right">
                   <p className="text-sm font-medium">{deadline.date}</p>
-                  <Button size="sm" variant="outline" className="mt-1">
+                  <Button size="sm" variant="outline" className="mt-1" onClick={() => window.location.href = '/metrics'}>
                     Ver
                   </Button>
                 </div>
@@ -243,15 +243,15 @@ export function SchoolDashboard() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Button variant="hero" className="h-20 flex-col">
+            <Button variant="hero" className="h-20 flex-col" onClick={() => window.location.href = '/metrics'}>
               <BookOpen className="h-6 w-6 mb-2" />
               Registrar Métricas
             </Button>
-            <Button variant="secondary" className="h-20 flex-col">
+            <Button variant="secondary" className="h-20 flex-col" onClick={() => window.location.href = '/teachers'}>
               <Users className="h-6 w-6 mb-2" />
               Gerenciar Professores
             </Button>
-            <Button variant="outline" className="h-20 flex-col">
+            <Button variant="outline" className="h-20 flex-col" onClick={() => window.location.href = '/reports'}>
               <TrendingUp className="h-6 w-6 mb-2" />
               Ver Relatórios
             </Button>

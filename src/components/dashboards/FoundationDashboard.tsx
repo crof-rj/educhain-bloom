@@ -172,7 +172,7 @@ export function FoundationDashboard() {
                 <p className="text-sm font-medium">Escolas pendentes de aprovação</p>
                 <p className="text-xs text-muted-foreground">Revisar documentação</p>
               </div>
-              <Button size="sm" variant="outline">Ver</Button>
+              <Button size="sm" variant="outline" onClick={() => window.location.href = '/approvals'}>Ver</Button>
             </div>
             
             <div className="flex items-center gap-3 p-3 bg-destructive/10 rounded-lg">
@@ -183,7 +183,7 @@ export function FoundationDashboard() {
                 <p className="text-sm font-medium">Métricas em atraso</p>
                 <p className="text-xs text-muted-foreground">Dezembro/2023</p>
               </div>
-              <Button size="sm" variant="outline">Ver</Button>
+              <Button size="sm" variant="outline" onClick={() => window.location.href = '/analytics'}>Ver</Button>
             </div>
             
             <div className="flex items-center gap-3 p-3 bg-success/10 rounded-lg">
@@ -194,7 +194,7 @@ export function FoundationDashboard() {
                 <p className="text-sm font-medium">Distribuições aprovadas</p>
                 <p className="text-xs text-muted-foreground">Prontas para execução</p>
               </div>
-              <Button size="sm" variant="outline">Ver</Button>
+              <Button size="sm" variant="outline" onClick={() => window.location.href = '/distributions'}>Ver</Button>
             </div>
           </CardContent>
         </Card>
