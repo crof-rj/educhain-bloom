@@ -15,7 +15,7 @@ import { Badge } from '@/components/ui/badge';
 import { Bell, Wallet, LogOut, Settings, User } from 'lucide-react';
 
 export function Header() {
-  const { state, logout, connectWallet } = useAuth();
+  const { state, logout, connectWallet, disconnectWallet } = useAuth();
 
   if (!state.user) return null;
 
@@ -105,10 +105,15 @@ export function Header() {
                 <span>Configurações</span>
               </DropdownMenuItem>
               
-              {!isWalletConnected && (
+              {!isWalletConnected ? (
                 <DropdownMenuItem onClick={connectWallet} className="cursor-pointer">
                   <Wallet className="mr-2 h-4 w-4" />
                   <span>Conectar Carteira</span>
+                </DropdownMenuItem>
+              ) : (
+                <DropdownMenuItem onClick={disconnectWallet} className="cursor-pointer">
+                  <Wallet className="mr-2 h-4 w-4" />
+                  <span>Desconectar Carteira</span>
                 </DropdownMenuItem>
               )}
               

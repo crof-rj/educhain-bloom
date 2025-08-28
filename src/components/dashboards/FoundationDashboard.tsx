@@ -1,246 +1,177 @@
 import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
+import { FiatWithXLM } from '@/components/common/FiatWithXLM';
 import { 
+  TrendingUp, 
+  Users, 
   School, 
   DollarSign, 
-  Users, 
-  TrendingUp, 
-  AlertCircle,
+  Heart, 
+  BookOpen, 
+  Utensils, 
+  Award,
   CheckCircle,
-  Heart,
-  BookOpen,
-  MapPin
+  AlertTriangle,
+  Calendar
 } from 'lucide-react';
 
 export function FoundationDashboard() {
-  // Mock data - replace with actual API calls
-  const stats = {
+  const navigate = useNavigate();
+
+  // Mock data
+  const mockData = {
     totalFunds: 2500000,
     totalSchools: 127,
     monthlyDistributions: 89000,
     activeStudents: 8543,
   };
 
-  const impactMetrics = {
-    childrenFed: 8543,
-    teachersTrained: 234,
-    communitiesReached: 45,
-    averageAttendanceImprovement: 23,
-  };
-
   const recentDistributions = [
-    { id: '1', school: 'Escola Quilombola São José', amount: 15000, status: 'completed', date: '2024-01-15' },
-    { id: '2', school: 'Creche Indígena Tabajaras', amount: 8500, status: 'pending', date: '2024-01-14' },
-    { id: '3', school: 'Escola Comunitária Esperança', amount: 12000, status: 'completed', date: '2024-01-13' },
+    {
+      id: 'dist-1',
+      schoolId: 'school-1',
+      schoolName: 'Escola Quilombola São José',
+      amount: 15000,
+      date: '2024-01-15',
+      status: 'completed'
+    },
+    {
+      id: 'dist-2',
+      schoolId: 'school-2',
+      schoolName: 'Creche Indígena Tabajaras',
+      amount: 8500,
+      date: '2024-01-14',
+      status: 'pending'
+    },
+    {
+      id: 'dist-3',
+      schoolId: 'school-3',
+      schoolName: 'Escola Comunitária Esperança',
+      amount: 12000,
+      date: '2024-01-13', 
+      status: 'completed'
+    }
   ];
 
   return (
     <div className="space-y-6">
-      {/* Welcome Section */}
-      <div className="bg-gradient-primary rounded-xl p-6 text-primary-foreground">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold mb-2">Dashboard da Fundação</h1>
-            <p className="text-primary-foreground/90">
-              Impactando a educação brasileira através da transparência blockchain
-            </p>
-          </div>
-          <div className="hidden md:flex items-center gap-4">
-            <div className="text-right">
-              <p className="text-sm text-primary-foreground/80">Próxima Distribuição</p>
-              <p className="font-semibold">15 de Janeiro</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="impact-card">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total de Recursos</CardTitle>
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-success">
-              R$ {stats.totalFunds.toLocaleString()}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              +12% em relação ao mês anterior
-            </p>
+            <FiatWithXLM amountBRL={mockData.totalFunds} className="text-success" />
+            <p className="text-xs text-muted-foreground">+12% vs. mês anterior</p>
           </CardContent>
         </Card>
 
-        <Card className="impact-card">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Escolas Ativas</CardTitle>
-            <School className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-secondary">
-              {stats.totalSchools}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              +8 novas escolas este mês
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="impact-card">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Estudantes Ativos</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-accent">
-              {stats.activeStudents.toLocaleString()}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              +15% de frequência média
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="impact-card">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Distribuições Mensais</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-primary">
-              R$ {stats.monthlyDistributions.toLocaleString()}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              Meta: R$ 120.000 (74%)
-            </p>
+            <FiatWithXLM amountBRL={mockData.monthlyDistributions} className="text-primary" />
+            <p className="text-xs text-muted-foreground">Este mês</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Escolas Ativas</CardTitle>
+            <School className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-secondary">{mockData.totalSchools}</div>
+            <p className="text-xs text-muted-foreground">+8 novas escolas</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Estudantes Ativos</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-accent">{mockData.activeStudents.toLocaleString()}</div>
+            <p className="text-xs text-muted-foreground">+15% frequência média</p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Impact Metrics */}
+      {/* Actions and Distributions */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Heart className="h-5 w-5 text-destructive" />
-              Métricas de Impacto Social
+              <AlertTriangle className="h-5 w-5 text-warning" />
+              Ações Necessárias
             </CardTitle>
-            <CardDescription>
-              Indicadores chave do impacto na comunidade
-            </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-sm">Crianças Alimentadas</span>
-              <span className="font-bold text-success">{impactMetrics.childrenFed.toLocaleString()}</span>
+          <CardContent className="space-y-3">
+            <div className="flex items-center gap-3 p-3 bg-warning/10 rounded-lg">
+              <Badge className="bg-blue-600 text-white">5</Badge>
+              <div className="flex-1">
+                <p className="text-sm font-medium">Escolas pendentes de aprovação</p>
+              </div>
+              <Button variant="outline" size="sm" onClick={() => navigate('/approvals')}>Ver</Button>
             </div>
-            <Progress value={85} className="h-2" />
             
-            <div className="flex items-center justify-between">
-              <span className="text-sm">Professores Capacitados</span>
-              <span className="font-bold text-secondary">{impactMetrics.teachersTrained}</span>
+            <div className="flex items-center gap-3 p-3 bg-destructive/10 rounded-lg">
+              <Badge className="bg-red-600 text-white">2</Badge>
+              <div className="flex-1">
+                <p className="text-sm font-medium">Métricas em atraso</p>
+              </div>
+              <Button variant="outline" size="sm" onClick={() => navigate('/analytics')}>Ver</Button>
             </div>
-            <Progress value={67} className="h-2" />
             
-            <div className="flex items-center justify-between">
-              <span className="text-sm">Comunidades Alcançadas</span>
-              <span className="font-bold text-accent">{impactMetrics.communitiesReached}</span>
+            <div className="flex items-center gap-3 p-3 bg-success/10 rounded-lg">
+              <Badge className="bg-green-600 text-white">8</Badge>
+              <div className="flex-1">
+                <p className="text-sm font-medium">Distribuições aprovadas</p>
+              </div>
+              <Button variant="outline" size="sm" onClick={() => navigate('/distributions')}>Ver</Button>
             </div>
-            <Progress value={92} className="h-2" />
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <AlertCircle className="h-5 w-5 text-warning" />
-              Ações Necessárias
+              <DollarSign className="h-5 w-5 text-success" />
+              Distribuições Recentes
             </CardTitle>
-            <CardDescription>
-              Pendências que requerem atenção
-            </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-3">
-            <div className="flex items-center gap-3 p-3 bg-warning/10 rounded-lg">
-              <Badge variant="outline" className="text-warning border-warning">
-                5
-              </Badge>
-              <div className="flex-1">
-                <p className="text-sm font-medium">Escolas pendentes de aprovação</p>
-                <p className="text-xs text-muted-foreground">Revisar documentação</p>
-              </div>
-              <Button size="sm" variant="outline" onClick={() => window.location.href = '/approvals'}>Ver</Button>
-            </div>
-            
-            <div className="flex items-center gap-3 p-3 bg-destructive/10 rounded-lg">
-              <Badge variant="outline" className="text-destructive border-destructive">
-                2
-              </Badge>
-              <div className="flex-1">
-                <p className="text-sm font-medium">Métricas em atraso</p>
-                <p className="text-xs text-muted-foreground">Dezembro/2023</p>
-              </div>
-              <Button size="sm" variant="outline" onClick={() => window.location.href = '/analytics'}>Ver</Button>
-            </div>
-            
-            <div className="flex items-center gap-3 p-3 bg-success/10 rounded-lg">
-              <Badge variant="outline" className="text-success border-success">
-                8
-              </Badge>
-              <div className="flex-1">
-                <p className="text-sm font-medium">Distribuições aprovadas</p>
-                <p className="text-xs text-muted-foreground">Prontas para execução</p>
-              </div>
-              <Button size="sm" variant="outline" onClick={() => window.location.href = '/distributions'}>Ver</Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Recent Distributions */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <DollarSign className="h-5 w-5 text-success" />
-            Distribuições Recentes
-          </CardTitle>
-          <CardDescription>
-            Últimas transferências de recursos para as escolas
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
+          <CardContent>
             {recentDistributions.map((distribution) => (
-              <div key={distribution.id} className="flex items-center justify-between p-3 border border-border/50 rounded-lg">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <School className="h-4 w-4 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium">{distribution.school}</p>
-                    <p className="text-sm text-muted-foreground">{distribution.date}</p>
-                  </div>
+              <div key={distribution.id} className="flex items-center justify-between py-2">
+                <div>
+                  <Link 
+                    to={`/schools/${distribution.schoolId}`}
+                    className="font-medium hover:text-primary transition-colors cursor-pointer"
+                  >
+                    {distribution.schoolName}
+                  </Link>
+                  <p className="text-sm text-muted-foreground">{distribution.date}</p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="font-bold text-success">
-                    R$ {distribution.amount.toLocaleString()}
-                  </span>
-                  <Badge variant={distribution.status === 'completed' ? 'default' : 'secondary'}>
-                    {distribution.status === 'completed' ? (
-                      <><CheckCircle className="h-3 w-3 mr-1" /> Concluída</>
-                    ) : (
-                      <><AlertCircle className="h-3 w-3 mr-1" /> Pendente</>
-                    )}
+                  <span className="font-bold text-success">R$ {distribution.amount.toLocaleString()}</span>
+                  <Badge className={distribution.status === 'completed' ? 'bg-green-600 text-white' : 'bg-blue-600 text-white'}>
+                    {distribution.status === 'completed' ? 'Concluída' : 'Pendente'}
                   </Badge>
                 </div>
               </div>
             ))}
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

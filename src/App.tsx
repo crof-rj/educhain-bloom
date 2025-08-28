@@ -57,6 +57,21 @@ function AppContent() {
             <SchoolsPage />
           </RoleRoute>
         } />
+        <Route path="/schools/new" element={
+          <RoleRoute allowedRoles={['foundation_manager']}>
+            <SchoolCreatePage />
+          </RoleRoute>
+        } />
+        <Route path="/schools/:id" element={
+          <RoleRoute allowedRoles={['foundation_manager']}>
+            <SchoolDetailPage />
+          </RoleRoute>
+        } />
+        <Route path="/schools/:id/edit" element={
+          <RoleRoute allowedRoles={['foundation_manager']}>
+            <SchoolEditPage />
+          </RoleRoute>
+        } />
         <Route path="/approvals" element={
           <RoleRoute allowedRoles={['foundation_manager']}>
             <ApprovalsPage />

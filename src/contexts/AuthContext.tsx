@@ -7,6 +7,7 @@ interface AuthContextType {
   register: (data: RegisterData) => Promise<void>;
   logout: () => void;
   connectWallet: () => Promise<void>;
+  disconnectWallet: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -16,7 +17,8 @@ type AuthAction =
   | { type: 'LOGIN_SUCCESS'; payload: User }
   | { type: 'LOGIN_FAIL'; payload: string }
   | { type: 'LOGOUT' }
-  | { type: 'CONNECT_WALLET'; payload: string };
+  | { type: 'CONNECT_WALLET'; payload: string }
+  | { type: 'DISCONNECT_WALLET' };
 
 const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   switch (action.type) {
@@ -49,6 +51,11 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
       return {
         ...state,
         user: state.user ? { ...state.user, walletAddress: action.payload } : null,
+      };
+    case 'DISCONNECT_WALLET':
+      return {
+        ...state,
+        user: state.user ? { ...state.user, walletAddress: undefined } : null,
       };
     default:
       return state;
@@ -130,8 +137,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const disconnectWallet = () => {
+    dispatch({ type: 'DISCONNECT_WALLET' });
+  };
+
   return (
-    <AuthContext.Provider value={{ state, login, register, logout, connectWallet }}>
+    <AuthContext.Provider value={{ state, login, register, logout, connectWallet, disconnectWallet }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -8,9 +9,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { FiatWithXLM } from '@/components/common/FiatWithXLM';
 import { DollarSign, Send, CheckCircle, Clock, XCircle, Eye, Plus } from 'lucide-react';
 
 export default function DistributionsPage() {
+  const navigate = useNavigate();
   const [selectedSchool, setSelectedSchool] = useState('');
   const [amount, setAmount] = useState('');
   const [purpose, setPurpose] = useState('');
@@ -20,6 +23,7 @@ export default function DistributionsPage() {
   const distributions = [
     {
       id: 'dist-1',
+      schoolId: 'school-1',
       schoolName: 'Escola Quilombola São José',
       amount: 15000,
       currency: 'BRL',
@@ -31,6 +35,7 @@ export default function DistributionsPage() {
     },
     {
       id: 'dist-2',
+      schoolId: 'school-2',
       schoolName: 'Creche Indígena Tabajaras',
       amount: 8500,
       currency: 'BRL',
@@ -42,6 +47,7 @@ export default function DistributionsPage() {
     },
     {
       id: 'dist-3',
+      schoolId: 'school-3',
       schoolName: 'Escola Comunitária Esperança',
       amount: 12000,
       currency: 'BRL',
@@ -53,6 +59,7 @@ export default function DistributionsPage() {
     },
     {
       id: 'dist-4',
+      schoolId: 'school-4',
       schoolName: 'Creche Vila Nova',
       amount: 6000,
       currency: 'BRL',
@@ -77,21 +84,21 @@ export default function DistributionsPage() {
     switch (status) {
       case 'completed':
         return (
-          <Badge variant="default" className="text-success border-success">
+          <Badge className="bg-green-600 text-white">
             <CheckCircle className="h-3 w-3 mr-1" />
             Concluída
           </Badge>
         );
       case 'pending':
         return (
-          <Badge variant="secondary" className="text-warning border-warning">
+          <Badge className="bg-blue-600 text-white">
             <Clock className="h-3 w-3 mr-1" />
             Pendente
           </Badge>
         );
       case 'failed':
         return (
-          <Badge variant="destructive">
+          <Badge className="bg-red-600 text-white">
             <XCircle className="h-3 w-3 mr-1" />
             Falhou
           </Badge>
@@ -228,9 +235,7 @@ export default function DistributionsPage() {
             <DollarSign className="h-4 w-4 text-success" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-success">
-              R$ {totalDistributed.toLocaleString()}
-            </div>
+            <FiatWithXLM amountBRL={totalDistributed} className="text-success" />
             <p className="text-xs text-muted-foreground">Este mês</p>
           </CardContent>
         </Card>
@@ -241,9 +246,7 @@ export default function DistributionsPage() {
             <Clock className="h-4 w-4 text-warning" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-warning">
-              R$ {pendingAmount.toLocaleString()}
-            </div>
+            <FiatWithXLM amountBRL={pendingAmount} className="text-warning" />
             <p className="text-xs text-muted-foreground">Aguardando processamento</p>
           </CardContent>
         </Card>
@@ -313,7 +316,11 @@ export default function DistributionsPage() {
                       {getStatusBadge(distribution.status)}
                     </TableCell>
                     <TableCell>
-                      <Button variant="outline" size="sm">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => navigate(`/schools/${distribution.schoolId}`)}
+                      >
                         <Eye className="h-3 w-3 mr-1" />
                         Ver
                       </Button>

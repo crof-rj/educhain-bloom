@@ -10,6 +10,7 @@ import { CheckCircle, XCircle, Eye, MapPin, Users, FileText, AlertCircle } from 
 export default function ApprovalsPage() {
   const [selectedSchool, setSelectedSchool] = useState<any>(null);
   const [reviewComment, setReviewComment] = useState('');
+  const [schoolStatuses, setSchoolStatuses] = useState<{[key: string]: string}>({});
 
   // Mock data - schools pending approval
   const pendingSchools = [
@@ -104,16 +105,29 @@ export default function ApprovalsPage() {
 
   const handleApprove = (schoolId: string) => {
     console.log('Aprovando escola:', schoolId, 'Comentário:', reviewComment);
-    // Here you would make an API call to approve the school
+    setSchoolStatuses(prev => ({ ...prev, [schoolId]: 'approved' }));
     setReviewComment('');
     setSelectedSchool(null);
   };
 
   const handleReject = (schoolId: string) => {
     console.log('Rejeitando escola:', schoolId, 'Comentário:', reviewComment);
-    // Here you would make an API call to reject the school
+    setSchoolStatuses(prev => ({ ...prev, [schoolId]: 'rejected' }));
     setReviewComment('');
     setSelectedSchool(null);
+  };
+
+  const getStatusBadgeForSchool = (schoolId: string) => {
+    const currentStatus = schoolStatuses[schoolId] || 'pending';
+    switch (currentStatus) {
+      case 'approved':
+        return <Badge className="bg-green-600 text-white cursor-pointer">Aprovado</Badge>;
+      case 'rejected':
+        return <Badge className="bg-red-600 text-white cursor-pointer">Rejeitado</Badge>;
+      case 'pending':
+      default:
+        return <Badge className="bg-blue-600 text-white cursor-pointer">Pendente</Badge>;
+    }
   };
 
   return (
@@ -176,9 +190,51 @@ export default function ApprovalsPage() {
                     Enviado em {school.submittedAt} • {school.type === 'escola' ? 'Escola' : 'Creche'}
                   </CardDescription>
                 </div>
-                <Badge variant="secondary" className="text-warning">
-                  Pendente
-                </Badge>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <div onClick={() => setSelectedSchool(school)}>
+                      {getStatusBadgeForSchool(school.id)}
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle>Revisar Cadastro</DialogTitle>
+                      <DialogDescription>
+                        Analisar solicitação de cadastro de {selectedSchool?.name}
+                      </DialogDescription>
+                    </DialogHeader>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <Label htmlFor="comment">Comentários da Revisão</Label>
+                        <Textarea
+                          id="comment"
+                          placeholder="Adicione comentários sobre a aprovação ou rejeição..."
+                          value={reviewComment}
+                          onChange={(e) => setReviewComment(e.target.value)}
+                          className="mt-1"
+                        />
+                      </div>
+                    </div>
+                    
+                    <DialogFooter className="gap-2">
+                      <Button 
+                        variant="destructive"
+                        onClick={() => selectedSchool && handleReject(selectedSchool.id)}
+                      >
+                        <XCircle className="h-4 w-4 mr-2" />
+                        Rejeitar
+                      </Button>
+                      <Button 
+                        onClick={() => selectedSchool && handleApprove(selectedSchool.id)}
+                        className="bg-green-600 text-white hover:bg-green-700"
+                      >
+                        <CheckCircle className="h-4 w-4 mr-2" />
+                        Aprovar
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
               </div>
             </CardHeader>
             <CardContent>
@@ -239,54 +295,6 @@ export default function ApprovalsPage() {
                 </div>
               </div>
 
-              {/* Actions */}
-              <div className="flex gap-2">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button variant="outline" onClick={() => setSelectedSchool(school)}>
-                      <Eye className="h-4 w-4 mr-2" />
-                      Revisar
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-2xl">
-                    <DialogHeader>
-                      <DialogTitle>Revisar Cadastro</DialogTitle>
-                      <DialogDescription>
-                        Analisar solicitação de cadastro de {selectedSchool?.name}
-                      </DialogDescription>
-                    </DialogHeader>
-                    
-                    <div className="space-y-4">
-                      <div>
-                        <Label htmlFor="comment">Comentários da Revisão</Label>
-                        <Textarea
-                          id="comment"
-                          placeholder="Adicione comentários sobre a aprovação ou rejeição..."
-                          value={reviewComment}
-                          onChange={(e) => setReviewComment(e.target.value)}
-                          className="mt-1"
-                        />
-                      </div>
-                    </div>
-                    
-                    <DialogFooter className="gap-2">
-                      <Button 
-                        variant="destructive"
-                        onClick={() => selectedSchool && handleReject(selectedSchool.id)}
-                      >
-                        <XCircle className="h-4 w-4 mr-2" />
-                        Rejeitar
-                      </Button>
-                      <Button 
-                        onClick={() => selectedSchool && handleApprove(selectedSchool.id)}
-                      >
-                        <CheckCircle className="h-4 w-4 mr-2" />
-                        Aprovar
-                      </Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
-              </div>
             </CardContent>
           </Card>
         ))}
