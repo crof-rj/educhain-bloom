@@ -13,6 +13,9 @@ import Unauthorized from "./pages/Unauthorized";
 
 // Foundation Manager Pages
 import SchoolsPage from "./pages/foundation/SchoolsPage";
+import SchoolCreatePage from "./pages/foundation/SchoolCreatePage";
+import SchoolDetailPage from "./pages/foundation/SchoolDetailPage";
+import SchoolEditPage from "./pages/foundation/SchoolEditPage";
 import ApprovalsPage from "./pages/foundation/ApprovalsPage";
 import DistributionsPage from "./pages/foundation/DistributionsPage";
 import AnalyticsPage from "./pages/foundation/AnalyticsPage";
