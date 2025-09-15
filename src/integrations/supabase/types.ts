@@ -14,7 +14,363 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      distributions: {
+        Row: {
+          amount: number
+          approved_at: string | null
+          approved_by: string | null
+          created_at: string
+          distribution_date: string
+          id: string
+          installment_number: number
+          institution_id: string
+          notes: string | null
+          processed_at: string | null
+          status: Database["public"]["Enums"]["distribution_status"] | null
+          stellar_operation_id: string | null
+          transaction_hash: string | null
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          approved_at?: string | null
+          approved_by?: string | null
+          created_at?: string
+          distribution_date: string
+          id?: string
+          installment_number: number
+          institution_id: string
+          notes?: string | null
+          processed_at?: string | null
+          status?: Database["public"]["Enums"]["distribution_status"] | null
+          stellar_operation_id?: string | null
+          transaction_hash?: string | null
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          approved_at?: string | null
+          approved_by?: string | null
+          created_at?: string
+          distribution_date?: string
+          id?: string
+          installment_number?: number
+          institution_id?: string
+          notes?: string | null
+          processed_at?: string | null
+          status?: Database["public"]["Enums"]["distribution_status"] | null
+          stellar_operation_id?: string | null
+          transaction_hash?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "distributions_approved_by_fkey"
+            columns: ["approved_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "distributions_institution_id_fkey"
+            columns: ["institution_id"]
+            isOneToOne: false
+            referencedRelation: "institutions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      foundation_settings: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean | null
+          setting_key: string
+          setting_value: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          setting_key: string
+          setting_value: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          setting_key?: string
+          setting_value?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      institutions: {
+        Row: {
+          city: string
+          country: string | null
+          created_at: string
+          full_address: string
+          has_computers: boolean | null
+          has_internet: boolean | null
+          has_library: boolean | null
+          id: string
+          infrastructure_score: number | null
+          installment_value: number | null
+          manager_id: string | null
+          name: string
+          postal_code: string
+          school_days: number
+          state: string
+          status: Database["public"]["Enums"]["institution_status"]
+          stellar_wallet: string | null
+          student_count: number
+          total_value: number | null
+          type: Database["public"]["Enums"]["institution_type"]
+          unit_value: number
+          updated_at: string
+        }
+        Insert: {
+          city: string
+          country?: string | null
+          created_at?: string
+          full_address: string
+          has_computers?: boolean | null
+          has_internet?: boolean | null
+          has_library?: boolean | null
+          id?: string
+          infrastructure_score?: number | null
+          installment_value?: number | null
+          manager_id?: string | null
+          name: string
+          postal_code: string
+          school_days: number
+          state: string
+          status?: Database["public"]["Enums"]["institution_status"]
+          stellar_wallet?: string | null
+          student_count: number
+          total_value?: number | null
+          type: Database["public"]["Enums"]["institution_type"]
+          unit_value: number
+          updated_at?: string
+        }
+        Update: {
+          city?: string
+          country?: string | null
+          created_at?: string
+          full_address?: string
+          has_computers?: boolean | null
+          has_internet?: boolean | null
+          has_library?: boolean | null
+          id?: string
+          infrastructure_score?: number | null
+          installment_value?: number | null
+          manager_id?: string | null
+          name?: string
+          postal_code?: string
+          school_days?: number
+          state?: string
+          status?: Database["public"]["Enums"]["institution_status"]
+          stellar_wallet?: string | null
+          student_count?: number
+          total_value?: number | null
+          type?: Database["public"]["Enums"]["institution_type"]
+          unit_value?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_institutions_manager"
+            columns: ["manager_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      monthly_metrics: {
+        Row: {
+          attendance_rate: number | null
+          community_engagement_score: number | null
+          created_at: string
+          eligibility_score: number | null
+          id: string
+          institution_id: string
+          month: number
+          notes: string | null
+          nutrition_program_participation: number | null
+          teacher_training_hours: number | null
+          updated_at: string
+          validated_at: string | null
+          validated_by: string | null
+          validation_status:
+            | Database["public"]["Enums"]["validation_status"]
+            | null
+          year: number
+        }
+        Insert: {
+          attendance_rate?: number | null
+          community_engagement_score?: number | null
+          created_at?: string
+          eligibility_score?: number | null
+          id?: string
+          institution_id: string
+          month: number
+          notes?: string | null
+          nutrition_program_participation?: number | null
+          teacher_training_hours?: number | null
+          updated_at?: string
+          validated_at?: string | null
+          validated_by?: string | null
+          validation_status?:
+            | Database["public"]["Enums"]["validation_status"]
+            | null
+          year: number
+        }
+        Update: {
+          attendance_rate?: number | null
+          community_engagement_score?: number | null
+          created_at?: string
+          eligibility_score?: number | null
+          id?: string
+          institution_id?: string
+          month?: number
+          notes?: string | null
+          nutrition_program_participation?: number | null
+          teacher_training_hours?: number | null
+          updated_at?: string
+          validated_at?: string | null
+          validated_by?: string | null
+          validation_status?:
+            | Database["public"]["Enums"]["validation_status"]
+            | null
+          year?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "monthly_metrics_institution_id_fkey"
+            columns: ["institution_id"]
+            isOneToOne: false
+            referencedRelation: "institutions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "monthly_metrics_validated_by_fkey"
+            columns: ["validated_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string
+          id: string
+          institution_id: string | null
+          name: string
+          permissions: string[] | null
+          role: Database["public"]["Enums"]["app_role"]
+          stellar_wallet: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email: string
+          id: string
+          institution_id?: string | null
+          name: string
+          permissions?: string[] | null
+          role: Database["public"]["Enums"]["app_role"]
+          stellar_wallet?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          institution_id?: string | null
+          name?: string
+          permissions?: string[] | null
+          role?: Database["public"]["Enums"]["app_role"]
+          stellar_wallet?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_institution_id_fkey"
+            columns: ["institution_id"]
+            isOneToOne: false
+            referencedRelation: "institutions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      teachers: {
+        Row: {
+          certification_level: string | null
+          created_at: string
+          email: string | null
+          id: string
+          institution_id: string
+          is_active: boolean | null
+          name: string
+          phone: string | null
+          subject_areas: string[] | null
+          training_hours: number | null
+          updated_at: string
+          years_experience: number | null
+        }
+        Insert: {
+          certification_level?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          institution_id: string
+          is_active?: boolean | null
+          name: string
+          phone?: string | null
+          subject_areas?: string[] | null
+          training_hours?: number | null
+          updated_at?: string
+          years_experience?: number | null
+        }
+        Update: {
+          certification_level?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          institution_id?: string
+          is_active?: boolean | null
+          name?: string
+          phone?: string | null
+          subject_areas?: string[] | null
+          training_hours?: number | null
+          updated_at?: string
+          years_experience?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "teachers_institution_id_fkey"
+            columns: ["institution_id"]
+            isOneToOne: false
+            referencedRelation: "institutions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +379,11 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      app_role: "foundation_manager" | "school_manager"
+      distribution_status: "pending" | "processing" | "completed" | "failed"
+      institution_status: "eligible" | "ineligible"
+      institution_type: "community_school" | "quilombola" | "indigenous"
+      validation_status: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +510,12 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["foundation_manager", "school_manager"],
+      distribution_status: ["pending", "processing", "completed", "failed"],
+      institution_status: ["eligible", "ineligible"],
+      institution_type: ["community_school", "quilombola", "indigenous"],
+      validation_status: ["pending", "approved", "rejected"],
+    },
   },
 } as const
