@@ -14,17 +14,17 @@ export default function Unauthorized() {
           <div className="mx-auto w-12 h-12 bg-destructive/10 rounded-full flex items-center justify-center mb-4">
             <ShieldAlert className="h-6 w-6 text-destructive" />
           </div>
-          <CardTitle>Acesso Não Autorizado</CardTitle>
+          <CardTitle>Unauthorized Access</CardTitle>
           <CardDescription>
-            Você não tem permissão para acessar esta página
+            You don't have permission to access this page
           </CardDescription>
         </CardHeader>
         <CardContent className="text-center">
           <p className="text-sm text-muted-foreground mb-4">
-            Entre em contato com o administrador se acredita que isso é um erro.
+            Contact the administrator if you believe this is an error.
           </p>
           <Button onClick={() => navigate(-1)} className="w-full">
-            Voltar
+            Go Back
           </Button>
         </CardContent>
       </Card>

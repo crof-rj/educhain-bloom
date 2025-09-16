@@ -42,9 +42,9 @@ export function SchoolDashboard() {
   };
 
   const upcomingDeadlines = [
-    { type: 'Métricas Mensais', date: '2024-01-31', description: 'Envio das métricas de Janeiro' },
-    { type: 'Relatório Trimestral', date: '2024-02-15', description: 'Relatório de impacto Q4 2023' },
-    { type: 'Capacitação', date: '2024-02-05', description: 'Workshop de Gestão Escolar' },
+    { type: 'Monthly Metrics', date: '2024-01-31', description: 'January metrics submission' },
+    { type: 'Quarterly Report', date: '2024-02-15', description: 'Q4 2023 impact report' },
+    { type: 'Training', date: '2024-02-05', description: 'School Management Workshop' },
   ];
 
   return (
@@ -55,11 +55,11 @@ export function SchoolDashboard() {
           <div>
             <h1 className="text-2xl font-bold mb-2">{schoolData.name}</h1>
             <p className="text-secondary-foreground/90">
-              Transformando vidas através da educação de qualidade
+              Transforming lives through quality education
             </p>
             <div className="flex items-center gap-4 mt-3">
               <Badge variant="outline" className="text-secondary-foreground border-secondary-foreground/30">
-                {schoolData.studentsCount} estudantes
+                {schoolData.studentsCount} students
               </Badge>
               <Badge variant="outline" className="text-secondary-foreground border-secondary-foreground/30">
                 Score: {schoolData.eligibilityScore}/100
@@ -68,7 +68,7 @@ export function SchoolDashboard() {
           </div>
           <div className="hidden md:block">
             <div className="text-right">
-              <p className="text-sm text-secondary-foreground/80">Última Distribuição</p>
+              <p className="text-sm text-secondary-foreground/80">Last Distribution</p>
               <p className="font-semibold text-xl">R$ {schoolData.lastDistribution.amount.toLocaleString()}</p>
               <p className="text-sm">{schoolData.lastDistribution.date}</p>
             </div>
@@ -81,10 +81,10 @@ export function SchoolDashboard() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Trophy className="h-5 w-5 text-accent" />
-            Score de Elegibilidade
+            Eligibility Score
           </CardTitle>
           <CardDescription>
-            Seu desempenho atual e áreas de melhoria
+            Your current performance and improvement areas
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -93,12 +93,12 @@ export function SchoolDashboard() {
               <div className="flex items-center justify-between mb-2">
                 <span className="text-2xl font-bold text-accent">{schoolData.eligibilityScore}/100</span>
                 <Badge variant={schoolData.eligibilityScore >= 80 ? 'default' : schoolData.eligibilityScore >= 60 ? 'secondary' : 'destructive'}>
-                  {schoolData.eligibilityScore >= 80 ? 'Excelente' : schoolData.eligibilityScore >= 60 ? 'Bom' : 'Precisa Melhorar'}
+                  {schoolData.eligibilityScore >= 80 ? 'Excellent' : schoolData.eligibilityScore >= 60 ? 'Good' : 'Needs Improvement'}
                 </Badge>
               </div>
               <Progress value={schoolData.eligibilityScore} className="h-3" />
               <p className="text-sm text-muted-foreground mt-2">
-                +5 pontos em relação ao mês anterior
+                +5 points compared to last month
               </p>
             </div>
           </div>
@@ -109,7 +109,7 @@ export function SchoolDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="impact-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Frequência Média</CardTitle>
+            <CardTitle className="text-sm font-medium">Average Attendance</CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -117,14 +117,14 @@ export function SchoolDashboard() {
               {currentMetrics.dailyAttendanceAvg}%
             </div>
             <p className="text-xs text-muted-foreground">
-              Meta: 85% (Atingida!)
+              Target: 85% (Achieved!)
             </p>
           </CardContent>
         </Card>
 
         <Card className="impact-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Refeições Servidas</CardTitle>
+            <CardTitle className="text-sm font-medium">Meals Served</CardTitle>
             <Utensils className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -132,14 +132,14 @@ export function SchoolDashboard() {
               {currentMetrics.mealsServed.toLocaleString()}
             </div>
             <p className="text-xs text-muted-foreground">
-              Este mês
+              This month
             </p>
           </CardContent>
         </Card>
 
         <Card className="impact-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Capacitação Docente</CardTitle>
+            <CardTitle className="text-sm font-medium">Teacher Training</CardTitle>
             <BookOpen className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -147,14 +147,14 @@ export function SchoolDashboard() {
               {currentMetrics.teacherTrainingHours}h
             </div>
             <p className="text-xs text-muted-foreground">
-              Horas de treinamento
+              Training hours
             </p>
           </CardContent>
         </Card>
 
         <Card className="impact-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Recebido</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Received</CardTitle>
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -162,7 +162,7 @@ export function SchoolDashboard() {
               R$ {schoolData.totalReceived.toLocaleString()}
             </div>
             <p className="text-xs text-muted-foreground">
-              Desde o cadastro
+              Since registration
             </p>
           </CardContent>
         </Card>
@@ -174,27 +174,27 @@ export function SchoolDashboard() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-primary" />
-              Métricas Detalhadas
+              Detailed Metrics
             </CardTitle>
             <CardDescription>
-              Indicadores de desempenho atual
+              Current performance indicators
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm">Segurança Alimentar</span>
+              <span className="text-sm">Food Security</span>
               <span className="font-bold text-success">{Math.round(currentMetrics.foodSecurityIndex * 100)}%</span>
             </div>
             <Progress value={currentMetrics.foodSecurityIndex * 100} className="h-2" />
             
             <div className="flex items-center justify-between">
-              <span className="text-sm">Gestão Escolar</span>
+              <span className="text-sm">School Management</span>
               <span className="font-bold text-secondary">{Math.round(currentMetrics.managementScore * 100)}%</span>
             </div>
             <Progress value={currentMetrics.managementScore * 100} className="h-2" />
             
             <div className="flex items-center justify-between">
-              <span className="text-sm">Participação Comunitária</span>
+              <span className="text-sm">Community Participation</span>
               <span className="font-bold text-accent">{Math.round(currentMetrics.communityParticipation * 100)}%</span>
             </div>
             <Progress value={currentMetrics.communityParticipation * 100} className="h-2" />
@@ -205,10 +205,10 @@ export function SchoolDashboard() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Calendar className="h-5 w-5 text-warning" />
-              Próximos Prazos
+              Upcoming Deadlines
             </CardTitle>
             <CardDescription>
-              Atividades e entregas importantes
+              Important activities and deliveries
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -224,7 +224,7 @@ export function SchoolDashboard() {
                 <div className="text-right">
                   <p className="text-sm font-medium">{deadline.date}</p>
                   <Button size="sm" variant="outline" className="mt-1" onClick={() => window.location.href = '/metrics'}>
-                    Ver
+                    View
                   </Button>
                 </div>
               </div>
@@ -236,24 +236,24 @@ export function SchoolDashboard() {
       {/* Quick Actions */}
       <Card>
         <CardHeader>
-          <CardTitle>Ações Rápidas</CardTitle>
+          <CardTitle>Quick Actions</CardTitle>
           <CardDescription>
-            Tarefas mais comuns do seu dia a dia
+            Most common tasks in your daily routine
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Button variant="hero" className="h-20 flex-col" onClick={() => window.location.href = '/metrics'}>
               <BookOpen className="h-6 w-6 mb-2" />
-              Registrar Métricas
+              Record Metrics
             </Button>
             <Button variant="secondary" className="h-20 flex-col" onClick={() => window.location.href = '/teachers'}>
               <Users className="h-6 w-6 mb-2" />
-              Gerenciar Professores
+              Manage Teachers
             </Button>
             <Button variant="outline" className="h-20 flex-col" onClick={() => window.location.href = '/reports'}>
               <TrendingUp className="h-6 w-6 mb-2" />
-              Ver Relatórios
+              View Reports
             </Button>
           </div>
         </CardContent>

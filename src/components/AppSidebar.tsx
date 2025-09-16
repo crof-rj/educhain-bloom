@@ -28,20 +28,20 @@ import {
 
 const foundationItems = [
   { title: 'Dashboard', url: '/dashboard', icon: LayoutDashboard },
-  { title: 'Escolas', url: '/schools', icon: School },
-  { title: 'Aprovações', url: '/approvals', icon: CheckCircle },
-  { title: 'Distribuições', url: '/distributions', icon: DollarSign },
+  { title: 'Schools', url: '/schools', icon: School },
+  { title: 'Approvals', url: '/approvals', icon: CheckCircle },
+  { title: 'Distributions', url: '/distributions', icon: DollarSign },
   { title: 'Analytics', url: '/analytics', icon: BarChart3 },
-  { title: 'Configurações', url: '/settings', icon: Settings },
+  { title: 'Settings', url: '/settings', icon: Settings },
 ];
 
 const schoolItems = [
   { title: 'Dashboard', url: '/dashboard', icon: Home },
-  { title: 'Minha Escola', url: '/school-profile', icon: School },
-  { title: 'Métricas', url: '/metrics', icon: TrendingUp },
-  { title: 'Recursos', url: '/resources', icon: DollarSign },
-  { title: 'Professores', url: '/teachers', icon: Users },
-  { title: 'Relatórios', url: '/reports', icon: FileText },
+  { title: 'My School', url: '/school-profile', icon: School },
+  { title: 'Metrics', url: '/metrics', icon: TrendingUp },
+  { title: 'Resources', url: '/resources', icon: DollarSign },
+  { title: 'Teachers', url: '/teachers', icon: Users },
+  { title: 'Reports', url: '/reports', icon: FileText },
 ];
 
 export function AppSidebar() {
@@ -80,7 +80,7 @@ export function AppSidebar() {
 
         <SidebarGroup>
           <SidebarGroupLabel className={collapsed ? 'sr-only' : ''}>
-            {authState.user.role === 'foundation_manager' ? 'Gestão da Fundação' : 'Gestão Escolar'}
+            {authState.user.role === 'foundation_manager' ? 'Foundation Management' : 'School Management'}
           </SidebarGroupLabel>
           
           <SidebarGroupContent>
@@ -109,10 +109,10 @@ export function AppSidebar() {
             <div className="bg-success/10 border border-success/20 rounded-lg p-3">
               <div className="flex items-center gap-2 mb-2">
                 <div className="h-2 w-2 bg-success rounded-full animate-pulse" />
-                <span className="text-xs font-medium text-success">Sistema Online</span>
+                <span className="text-xs font-medium text-success">System Online</span>
               </div>
               <p className="text-xs text-muted-foreground">
-                Blockchain Stellar conectado
+                Stellar Blockchain connected
               </p>
             </div>
           </div>

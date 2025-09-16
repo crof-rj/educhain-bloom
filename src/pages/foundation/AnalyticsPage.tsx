@@ -10,23 +10,23 @@ export default function AnalyticsPage() {
   // Mock data for charts
   const distributionsByMonth = [
     { month: 'Jul', amount: 45000, schools: 8 },
-    { month: 'Ago', amount: 52000, schools: 12 },
-    { month: 'Set', amount: 48000, schools: 10 },
-    { month: 'Out', amount: 67000, schools: 15 },
+    { month: 'Aug', amount: 52000, schools: 12 },
+    { month: 'Sep', amount: 48000, schools: 10 },
+    { month: 'Oct', amount: 67000, schools: 15 },
     { month: 'Nov', amount: 71000, schools: 18 },
-    { month: 'Dez', amount: 89000, schools: 22 },
+    { month: 'Dec', amount: 89000, schools: 22 },
     { month: 'Jan', amount: 95000, schools: 25 }
   ];
 
   const schoolsByType = [
-    { name: 'Escolas', value: 78, color: '#3b82f6' },
-    { name: 'Creches', value: 49, color: '#10b981' }
+    { name: 'Schools', value: 78, color: '#3b82f6' },
+    { name: 'Kindergartens', value: 49, color: '#10b981' }
   ];
 
   const communityTypes = [
-    { name: 'Comunitárias', value: 65, color: '#6366f1' },
-    { name: 'Quilombolas', value: 38, color: '#8b5cf6' },
-    { name: 'Indígenas', value: 24, color: '#f59e0b' }
+    { name: 'Community', value: 65, color: '#6366f1' },
+    { name: 'Quilombola', value: 38, color: '#8b5cf6' },
+    { name: 'Indigenous', value: 24, color: '#f59e0b' }
   ];
 
   const eligibilityScores = [
@@ -51,9 +51,9 @@ export default function AnalyticsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Analytics de Impacto</h1>
+        <h1 className="text-3xl font-bold">Impact Analytics</h1>
         <p className="text-muted-foreground">
-          Métricas detalhadas e análise do impacto social da EduChain Foundation
+          Detailed metrics and social impact analysis of EduChain Foundation
         </p>
       </div>
 
@@ -61,7 +61,7 @@ export default function AnalyticsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="impact-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Estudantes Impactados</CardTitle>
+            <CardTitle className="text-sm font-medium">Students Impacted</CardTitle>
             <Users className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
@@ -69,14 +69,14 @@ export default function AnalyticsPage() {
               {impactMetrics.totalStudents.toLocaleString()}
             </div>
             <p className="text-xs text-muted-foreground">
-              +15% vs. mês anterior
+              +15% vs. previous month
             </p>
           </CardContent>
         </Card>
 
         <Card className="impact-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Melhoria na Frequência</CardTitle>
+            <CardTitle className="text-sm font-medium">Attendance Improvement</CardTitle>
             <TrendingUp className="h-4 w-4 text-success" />
           </CardHeader>
           <CardContent>
@@ -84,14 +84,14 @@ export default function AnalyticsPage() {
               +{impactMetrics.avgAttendanceImprovement}%
             </div>
             <p className="text-xs text-muted-foreground">
-              Média das escolas
+              School average
             </p>
           </CardContent>
         </Card>
 
         <Card className="impact-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Refeições/Mês</CardTitle>
+            <CardTitle className="text-sm font-medium">Meals/Month</CardTitle>
             <Utensils className="h-4 w-4 text-accent" />
           </CardHeader>
           <CardContent>
@@ -99,14 +99,14 @@ export default function AnalyticsPage() {
               {impactMetrics.mealsServedMonthly.toLocaleString()}
             </div>
             <p className="text-xs text-muted-foreground">
-              Em todas as escolas
+              Across all schools
             </p>
           </CardContent>
         </Card>
 
         <Card className="impact-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Score Médio</CardTitle>
+            <CardTitle className="text-sm font-medium">Average Score</CardTitle>
             <Award className="h-4 w-4 text-secondary" />
           </CardHeader>
           <CardContent>
@@ -114,7 +114,7 @@ export default function AnalyticsPage() {
               {impactMetrics.avgEligibilityScore}
             </div>
             <p className="text-xs text-muted-foreground">
-              Elegibilidade geral
+              General eligibility
             </p>
           </CardContent>
         </Card>
@@ -126,10 +126,10 @@ export default function AnalyticsPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <DollarSign className="h-5 w-5 text-success" />
-              Distribuições por Mês
+              Monthly Distributions
             </CardTitle>
             <CardDescription>
-              Evolução das distribuições de recursos ao longo do tempo
+              Resource distribution evolution over time
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -143,7 +143,7 @@ export default function AnalyticsPage() {
                     `R$ ${value.toLocaleString()}`, 
                     'Valor BRL'
                   ]}
-                  labelFormatter={(label) => `Mês: ${label}`}
+                  labelFormatter={(label) => `Month: ${label}`}
                   content={({ active, payload, label }) => {
                     if (active && payload && payload.length) {
                       const value = payload[0].value;
@@ -167,10 +167,10 @@ export default function AnalyticsPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <School className="h-5 w-5 text-primary" />
-              Distribuição por Tipo
+              Distribution by Type
             </CardTitle>
             <CardDescription>
-              Proporção entre escolas e creches na rede
+              Proportion between schools and kindergartens in the network
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -202,10 +202,10 @@ export default function AnalyticsPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Heart className="h-5 w-5 text-destructive" />
-              Comunidades Atendidas
+              Communities Served
             </CardTitle>
             <CardDescription>
-              Distribuição por tipo de comunidade
+              Distribution by community type
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -234,10 +234,10 @@ export default function AnalyticsPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-accent" />
-              Distribuição de Scores
+              Score Distribution
             </CardTitle>
             <CardDescription>
-              Faixas de pontuação de elegibilidade das escolas
+              School eligibility score ranges
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -247,7 +247,7 @@ export default function AnalyticsPage() {
                 <XAxis dataKey="range" />
                 <YAxis />
                 <Tooltip 
-                  formatter={(value: number) => [`${value} escolas`, 'Quantidade']}
+                  formatter={(value: number) => [`${value} schools`, 'Quantity']}
                 />
                 <Bar dataKey="count" fill="#f59e0b" radius={[4, 4, 0, 0]} />
               </BarChart>
@@ -261,39 +261,39 @@ export default function AnalyticsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <BookOpen className="h-5 w-5 text-secondary" />
-            Resumo de Impacto Social
+            Social Impact Summary
           </CardTitle>
           <CardDescription>
-            Principais conquistas e resultados da fundação
+            Foundation's main achievements and results
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm">Professores Capacitados</span>
+                <span className="text-sm">Teachers Trained</span>
                 <span className="font-bold text-secondary">{impactMetrics.teachersTrained}</span>
               </div>
               <Progress value={78} className="h-2" />
-              <p className="text-xs text-muted-foreground">Meta anual: 300 professores (78%)</p>
+              <p className="text-xs text-muted-foreground">Annual target: 300 teachers (78%)</p>
             </div>
 
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm">Comunidades Alcançadas</span>
+                <span className="text-sm">Communities Reached</span>
                 <span className="font-bold text-accent">{impactMetrics.communitiesReached}</span>
               </div>
               <Progress value={90} className="h-2" />
-              <p className="text-xs text-muted-foreground">Meta anual: 50 comunidades (90%)</p>
+              <p className="text-xs text-muted-foreground">Annual target: 50 communities (90%)</p>
             </div>
 
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm">Taxa de Retenção</span>
+                <span className="text-sm">Retention Rate</span>
                 <span className="font-bold text-success">92%</span>
               </div>
               <Progress value={92} className="h-2" />
-              <p className="text-xs text-muted-foreground">Alunos que permanecem na escola</p>
+              <p className="text-xs text-muted-foreground">Students who remain in school</p>
             </div>
           </div>
         </CardContent>

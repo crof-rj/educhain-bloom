@@ -42,14 +42,14 @@ const LoginPage = () => {
               <h1 className="text-4xl font-bold">EduChain</h1>
             </div>
             <p className="text-xl text-white/90 mb-8">
-              Transformando a educação brasileira através da tecnologia blockchain
+              Transforming Brazilian education through blockchain technology
             </p>
             
             {/* Hero Image */}
             <div className="rounded-xl overflow-hidden shadow-glow mb-6">
               <img 
                 src="https://images.unsplash.com/photo-1544717824-d4bb8e24d5dc?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Crianças brasileiras aprendendo juntas"
+                alt="Brazilian children learning together"
                 className="w-full h-48 object-cover"
               />
             </div>
@@ -61,8 +61,8 @@ const LoginPage = () => {
                 <Heart className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h3 className="font-semibold">Impacto Social</h3>
-                <p className="text-white/80 text-sm">Distribuição transparente de recursos para comunidades quilombolas, indígenas e comunitárias</p>
+                <h3 className="font-semibold">Social Impact</h3>
+                <p className="text-white/80 text-sm">Transparent resource distribution for quilombola, indigenous and community schools</p>
               </div>
             </div>
             
@@ -71,8 +71,8 @@ const LoginPage = () => {
                 <Users className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h3 className="font-semibold">Gestão Inteligente</h3>
-                <p className="text-white/80 text-sm">Métricas baseadas em dados para maximizar o impacto educacional</p>
+                <h3 className="font-semibold">Smart Management</h3>
+                <p className="text-white/80 text-sm">Data-based metrics to maximize educational impact</p>
               </div>
             </div>
           </div>
@@ -81,9 +81,9 @@ const LoginPage = () => {
         {/* Login Form */}
         <Card className="w-full max-w-md shadow-accent">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl educhain-brand">Acesso à Plataforma</CardTitle>
+            <CardTitle className="text-2xl educhain-brand">Platform Access</CardTitle>
             <CardDescription>
-              Entre com suas credenciais para continuar
+              Enter your credentials to continue
             </CardDescription>
           </CardHeader>
           
@@ -102,7 +102,7 @@ const LoginPage = () => {
                 disabled={state.loading}
                 className="text-sm"
               >
-                Demo Fundação
+                Demo Foundation
               </Button>
               <Button
                 variant="outline"
@@ -110,7 +110,7 @@ const LoginPage = () => {
                 disabled={state.loading}
                 className="text-sm"
               >
-                Demo Escola
+                Demo School
               </Button>
             </div>
 
@@ -120,7 +120,7 @@ const LoginPage = () => {
               </div>
               <div className="relative flex justify-center text-xs">
                 <span className="bg-card px-2 text-muted-foreground">
-                  ou faça login manual
+                  or login manually
                 </span>
               </div>
             </div>
@@ -131,7 +131,7 @@ const LoginPage = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="seu@email.com"
+                  placeholder="your@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -139,7 +139,7 @@ const LoginPage = () => {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="password">Senha</Label>
+                <Label htmlFor="password">Password</Label>
                 <Input
                   id="password"
                   type="password"
@@ -157,14 +157,14 @@ const LoginPage = () => {
                 disabled={state.loading}
               >
                 {state.loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Entrar
+                Sign In
               </Button>
             </form>
 
             <div className="text-center text-sm text-muted-foreground">
-              <p>Credenciais de teste:</p>
-              <p><strong>Fundação:</strong> fundacao@educhain.org / demo123</p>
-              <p><strong>Escola:</strong> escola@educhain.org / demo123</p>
+              <p>Test credentials:</p>
+              <p><strong>Foundation:</strong> fundacao@educhain.org / demo123</p>
+              <p><strong>School:</strong> escola@educhain.org / demo123</p>
             </div>
           </CardContent>
         </Card>

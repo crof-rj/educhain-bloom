@@ -24,7 +24,7 @@ export function Header() {
   };
 
   const getRoleLabel = (role: string) => {
-    return role === 'foundation_manager' ? 'Gestão Fundação' : 'Gestão Escolar';
+    return role === 'foundation_manager' ? 'Foundation Management' : 'School Management';
   };
 
   const isWalletConnected = !!state.user.walletAddress;
@@ -36,10 +36,10 @@ export function Header() {
           <SidebarTrigger className="h-8 w-8" />
           <div className="hidden md:block">
             <h2 className="text-lg font-semibold text-foreground">
-              {state.user.role === 'foundation_manager' ? 'Painel da Fundação' : 'Painel da Escola'}
+              {state.user.role === 'foundation_manager' ? 'Foundation Panel' : 'School Panel'}
             </h2>
             <p className="text-sm text-muted-foreground">
-              Bem-vindo(a), {state.user.name}
+              Welcome, {state.user.name}
             </p>
           </div>
         </div>
@@ -53,7 +53,7 @@ export function Header() {
             className="hidden sm:flex"
           >
             <Wallet className="h-4 w-4 mr-2" />
-            {isWalletConnected ? 'Conectada' : 'Conectar Carteira'}
+            {isWalletConnected ? 'Connected' : 'Connect Wallet'}
           </Button>
 
           {/* Notifications */}
@@ -97,23 +97,23 @@ export function Header() {
               
               <DropdownMenuItem className="cursor-pointer">
                 <User className="mr-2 h-4 w-4" />
-                <span>Perfil</span>
+                <span>Profile</span>
               </DropdownMenuItem>
               
               <DropdownMenuItem className="cursor-pointer">
                 <Settings className="mr-2 h-4 w-4" />
-                <span>Configurações</span>
+                <span>Settings</span>
               </DropdownMenuItem>
               
               {!isWalletConnected ? (
                 <DropdownMenuItem onClick={connectWallet} className="cursor-pointer">
                   <Wallet className="mr-2 h-4 w-4" />
-                  <span>Conectar Carteira</span>
+                  <span>Connect Wallet</span>
                 </DropdownMenuItem>
               ) : (
                 <DropdownMenuItem onClick={disconnectWallet} className="cursor-pointer">
                   <Wallet className="mr-2 h-4 w-4" />
-                  <span>Desconectar Carteira</span>
+                  <span>Disconnect Wallet</span>
                 </DropdownMenuItem>
               )}
               
@@ -121,7 +121,7 @@ export function Header() {
               
               <DropdownMenuItem onClick={logout} className="cursor-pointer text-destructive">
                 <LogOut className="mr-2 h-4 w-4" />
-                <span>Sair</span>
+                <span>Sign Out</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

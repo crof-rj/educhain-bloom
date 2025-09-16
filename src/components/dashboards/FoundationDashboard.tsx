@@ -63,45 +63,45 @@ export function FoundationDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total de Recursos</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Resources</CardTitle>
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <FiatWithXLM amountBRL={mockData.totalFunds} className="text-success" />
-            <p className="text-xs text-muted-foreground">+12% vs. mês anterior</p>
+            <p className="text-xs text-muted-foreground">+12% vs. previous month</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Distribuições Mensais</CardTitle>
+            <CardTitle className="text-sm font-medium">Monthly Distributions</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <FiatWithXLM amountBRL={mockData.monthlyDistributions} className="text-primary" />
-            <p className="text-xs text-muted-foreground">Este mês</p>
+            <p className="text-xs text-muted-foreground">This month</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Escolas Ativas</CardTitle>
+            <CardTitle className="text-sm font-medium">Active Schools</CardTitle>
             <School className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-secondary">{mockData.totalSchools}</div>
-            <p className="text-xs text-muted-foreground">+8 novas escolas</p>
+            <p className="text-xs text-muted-foreground">+8 new schools</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Estudantes Ativos</CardTitle>
+            <CardTitle className="text-sm font-medium">Active Students</CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-accent">{mockData.activeStudents.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">+15% frequência média</p>
+            <p className="text-xs text-muted-foreground">+15% average attendance</p>
           </CardContent>
         </Card>
       </div>
@@ -112,32 +112,32 @@ export function FoundationDashboard() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <AlertTriangle className="h-5 w-5 text-warning" />
-              Ações Necessárias
+              Required Actions
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="flex items-center gap-3 p-3 bg-warning/10 rounded-lg">
               <Badge className="bg-blue-600 text-white">5</Badge>
               <div className="flex-1">
-                <p className="text-sm font-medium">Escolas pendentes de aprovação</p>
+                <p className="text-sm font-medium">Schools pending approval</p>
               </div>
-              <Button variant="outline" size="sm" onClick={() => navigate('/approvals')}>Ver</Button>
+              <Button variant="outline" size="sm" onClick={() => navigate('/approvals')}>View</Button>
             </div>
             
             <div className="flex items-center gap-3 p-3 bg-destructive/10 rounded-lg">
               <Badge className="bg-red-600 text-white">2</Badge>
               <div className="flex-1">
-                <p className="text-sm font-medium">Métricas em atraso</p>
+                <p className="text-sm font-medium">Overdue metrics</p>
               </div>
-              <Button variant="outline" size="sm" onClick={() => navigate('/analytics')}>Ver</Button>
+              <Button variant="outline" size="sm" onClick={() => navigate('/analytics')}>View</Button>
             </div>
             
             <div className="flex items-center gap-3 p-3 bg-success/10 rounded-lg">
               <Badge className="bg-green-600 text-white">8</Badge>
               <div className="flex-1">
-                <p className="text-sm font-medium">Distribuições aprovadas</p>
+                <p className="text-sm font-medium">Approved distributions</p>
               </div>
-              <Button variant="outline" size="sm" onClick={() => navigate('/distributions')}>Ver</Button>
+              <Button variant="outline" size="sm" onClick={() => navigate('/distributions')}>View</Button>
             </div>
           </CardContent>
         </Card>
@@ -146,7 +146,7 @@ export function FoundationDashboard() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <DollarSign className="h-5 w-5 text-success" />
-              Distribuições Recentes
+              Recent Distributions
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -164,7 +164,7 @@ export function FoundationDashboard() {
                 <div className="flex items-center gap-3">
                   <span className="font-bold text-success">R$ {distribution.amount.toLocaleString()}</span>
                   <Badge className={distribution.status === 'completed' ? 'bg-green-600 text-white' : 'bg-blue-600 text-white'}>
-                    {distribution.status === 'completed' ? 'Concluída' : 'Pendente'}
+                    {distribution.status === 'completed' ? 'Completed' : 'Pending'}
                   </Badge>
                 </div>
               </div>
